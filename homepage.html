@@ -14,6 +14,224 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* Ensure all icons have consistent styling */
+.growth-icon i {
+    font-size: 2rem;
+}
+/* Comments Slider Styles */
+.comments-slider .carousel-control-prev,
+.comments-slider .carousel-control-next {
+    width: 5%;
+    opacity: 0.7;
+}
+
+.comments-slider .carousel-control-prev:hover,
+.comments-slider .carousel-control-next:hover {
+    opacity: 1;
+}
+
+.comments-slider .carousel-indicators {
+    margin-top: 20px;
+}
+
+.comments-slider .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--navy);
+    opacity: 0.5;
+}
+
+.comments-slider .carousel-indicators button.active {
+    opacity: 1;
+}
+
+/* Add Comment Form Styles */
+.add-comment-form {
+    border-top: 3px solid var(--navy);
+}
+
+.rating-stars {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating-stars i {
+    margin-right: 5px;
+    transition: color 0.2s;
+}
+
+.rating-stars i:hover,
+.rating-stars i.active {
+    color: #ffc107;
+}
+
+/* Success Message */
+.comment-success {
+    display: none;
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(168, 218, 220, 0.2);
+    border-radius: 8px;
+    margin-top: 20px;
+    color: var(--navy);
+}
+
+
+
+     /* Growth Section Styles */
+.growth-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(108, 116, 168, 0.12);
+    transition: all 0.4s ease;
+    text-align: center;
+    height: 100%;
+    border-left: 4px solid var(--navy);
+    position: relative;
+    overflow: hidden;
+}
+
+.growth-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.growth-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(108, 116, 168, 0.2);
+}
+
+.growth-card:hover:before {
+    opacity: 0.03;
+}
+
+.growth-icon {
+    font-size: 2.2rem;
+    color: var(--navy);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: rgba(108, 116, 168, 0.1);
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.growth-card:hover .growth-icon {
+    transform: scale(1.1);
+    background: var(--navy);
+    color: white;
+}
+
+.growth-card h3 {
+    color: var(--navy);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.growth-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background-color: var(--teal);
+    transition: all 0.4s ease;
+}
+
+.growth-card:hover h3::after {
+    width: 80px;
+    background-color: var(--teal);
+}
+
+.growth-card p {
+    color: #555;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.growth-card:hover p {
+    color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .growth-card {
+        padding: 25px 20px;
+    }
+    
+    .growth-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+}
+
+
+
+
+        /* Navbar Demo Button Styles */
+.btn-demo-nav {
+    background-color: var(--navy);
+    border-color: var(--navy);
+    color: white;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-demo-nav:hover {
+    background-color: var(--dark-navy);
+    border-color: var(--dark-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 116, 168, 0.3);
+    color: white;
+}
+
+/* Adjust navbar item spacing for the button */
+@media (min-width: 992px) {
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+
+
+
+
+
+
+        /* Ensure all icons have consistent styling */
+.growth-icon i {
+    font-size: 2rem;
+}
+
+
         :root {
             --navy: #6C74A8;
             --grey: #E5E5E5;
@@ -783,36 +1001,39 @@
 </head>
 <body>
    <!-- Header/Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="logo.jpg" alt="Flow POS Logo" class="logo-img">
-                <span style="color: var(--navy);">Flow</span> POS
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pricing.html">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link login-btn" href="demo.html">Get Demo</a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Header/Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="logo.jpg" alt="Flow POS Logo" class="logo-img">
+            <span style="color: var(--navy);">Flow</span> POS
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pricing.html">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                    <a class="btn btn-primary btn-demo-nav" href="demo.html" data-bs-toggle="modal" data-bs-target="#demoModal">GET DEMO</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+
 
     <!-- Demo Modal -->
     <div class="modal fade demo-modal" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
@@ -918,7 +1139,7 @@
                     <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">Learn Our Story</button>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" style="position: relative;">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Software Development Team" class="img-fluid rounded shadow">
+                    <img src="https://www.touchbistro.com/wp-content/uploads/2022/04/all-in-one-restauraunt-management-system-inset-1.jpg" alt="Software Development Team" class="img-fluid rounded shadow">
                     <div class="year-box animate__animated animate__fadeInUp animate__delay-1s">
                         2015
                     </div>
@@ -1073,7 +1294,76 @@
         <div class="floating-element element-1"></div>
         <div class="floating-element element-2"></div>
     </section>
-
+<!-- Growth Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title d-inline-block">We Will Help Your Business Grow</h2>
+            <p class="lead">We offer future-ready outsourcing solutions to help you streamline your business operations for sustainable growth</p>
+        </div>
+        
+        <div class="row align-items-center">
+            <!-- Image on left side -->
+            <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
+              <!-- Replace the img tag with this if using your original image -->
+<img src="https://qashier.com/th/wp-content/uploads/sites/8/2023/05/qashier-pos-plan-1024x683.jpeg" 
+     alt="POS System Development" 
+     class="img-fluid rounded growth-section-img"
+     style="width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            
+            <!-- Grid cards on right side -->
+            <div class="col-lg-7">
+                <div class="row equal-height-cards">
+                    <!-- Vision Card -->
+                    <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="100">
+                        <div class="growth-card card-equal-height">
+                            <div class="growth-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>Vision</h3>
+                            <p>Transforming global success through innovative call center and service solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mission Card -->
+                    <div class="col-lg-6 mb-4" data-aos="flip-left" data-aos-delay="200">
+                        <div class="growth-card card-equal-height">
+                            <div class="growth-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3>Mission</h3>
+                            <p>Driving client success through innovative, value-driven call center and service solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategy Card -->
+                    <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="300">
+                        <div class="growth-card card-equal-height">
+                            <div class="growth-icon">
+                                <i class="fas fa-chess-knight"></i>
+                            </div>
+                            <h3>Strategy</h3>
+                            <p>Leveraging cutting-edge technology and processes to deliver exceptional customer experiences.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Values Card -->
+                    <div class="col-md-6 mb-4" data-aos="flip-left" data-aos-delay="400">
+                        <div class="growth-card card-equal-height">
+                            <div class="growth-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Values</h3>
+                            <p>Commitment to excellence, integrity, innovation, and client success in everything we do.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+           
     <!-- Restaurant Showcase -->
     <section class="py-5 pos-bg-section">
         <div class="container">
@@ -1137,7 +1427,7 @@
             </div>
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="POS Hardware" class="img-fluid pos-feature-img">
+                    <img src="C:\Users\MUGHAL TRADERS\Downloads\hardware.png" alt="POS Hardware" class="img-fluid pos-feature-img">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <h3>Hardware Packages</h3>
@@ -1154,7 +1444,7 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Software Services" class="img-fluid pos-feature-img">
+                    <img src="C:\Users\MUGHAL TRADERS\Downloads\2.webp" alt="Software Services" class="img-fluid pos-feature-img">
                 </div>
                 <div class="col-lg-6 order-lg-1" data-aos="fade-right">
                     <h3>Software Services</h3>
@@ -1216,77 +1506,201 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-5 pos-bg-section">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title d-inline-block">What Our Customers Say</h2>
-                <p class="lead">Restaurant owners across Pakistan love Flow POS</p>
-            </div>
-            <div class="row equal-height-cards">
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-card card-equal-height">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Client" class="testimonial-img me-3">
-                            <div>
-                                <h5 class="mb-0">Ali Khan</h5>
-                                <small class="text-muted">Owner, Cafe Lahore</small>
+   <!-- Interactive Comments Section -->
+<section class="py-5 pos-bg-section">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title d-inline-block">What Our Customers Say</h2>
+            <p class="lead">Restaurant owners across Pakistan love Flow POS</p>
+        </div>
+        
+        <!-- Comments Slider -->
+        <div class="comments-slider mb-5">
+            <div id="commentsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row equal-height-cards">
+                            <!-- Comment 1 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">Ali Khan</h5>
+                                            <small class="text-muted">Owner, Cafe Lahore</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"Flow POS transformed our operations. The Urdu interface made training staff effortless, and our order accuracy improved dramatically."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment 2 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">Fatima Ahmed</h5>
+                                            <small class="text-muted">Manager, Karachi BBQ House</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"The inventory management alone saved us 15% on food costs. The local support team is always available when we need them."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment 3 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">Usman Malik</h5>
+                                            <small class="text-muted">Owner, Islamabad Cafe</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"Switching to Flow POS was the best decision for our cafe. The reporting features help us understand our busiest times and most popular items."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p class="mb-0">"Flow POS transformed our operations. The Urdu interface made training staff effortless, and our order accuracy improved dramatically."</p>
-                        <div class="mt-2 text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row equal-height-cards">
+                            <!-- Comment 4 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">Sarah Johnson</h5>
+                                            <small class="text-muted">Manager, Fusion Restaurant</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"The customer support is exceptional. They helped us set up our menu exactly how we wanted and trained our staff thoroughly."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment 5 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">David Chen</h5>
+                                            <small class="text-muted">Owner, Dragon Palace</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"The reporting features have given us insights we never had before. We've optimized our menu and increased profits by 22%."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Comment 6 -->
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card card-equal-height">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Client" class="testimonial-img me-3">
+                                        <div>
+                                            <h5 class="mb-0">Emily Williams</h5>
+                                            <small class="text-muted">CEO, Foodie Chain</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-0">"We've rolled out Flow POS across all 5 of our locations. The consistency in reporting has made multi-location management so much easier."</p>
+                                    <div class="mt-2 text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-card card-equal-height">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
-                            <div>
-                                <h5 class="mb-0">Fatima Ahmed</h5>
-                                <small class="text-muted">Manager, Karachi BBQ House</small>
-                            </div>
-                        </div>
-                        <p class="mb-0">"The inventory management alone saved us 15% on food costs. The local support team is always available when we need them."</p>
-                        <div class="mt-2 text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#commentsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#commentsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators position-relative mt-4">
+                    <button type="button" data-bs-target="#commentsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#commentsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-card card-equal-height">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Client" class="testimonial-img me-3">
-                            <div>
-                                <h5 class="mb-0">Usman Malik</h5>
-                                <small class="text-muted">Owner, Islamabad Cafe</small>
-                            </div>
-                        </div>
-                        <p class="mb-0">"Switching to Flow POS was the best decision for our cafe. The reporting features help us understand our busiest times and most popular items."</p>
-                        <div class="mt-2 text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#demoModal">See What Our Customers Love</button>
             </div>
         </div>
-    </section>
-
+        
+        <!-- Add New Comment Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="add-comment-form bg-white p-4 rounded shadow-sm">
+                    <h4 class="text-center mb-4">Share Your Experience</h4>
+                    <form id="newCommentForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="commentName" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="commentPosition" placeholder="Your Position">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="commentText" rows="3" placeholder="Your Experience with Flow POS" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <div class="rating-stars">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="commentRating" value="5">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Contact Section -->
     <section id="contact" class="py-5 contact-section">
         <div class="container">
@@ -1358,9 +1772,7 @@
                         </div>
                     </div>
                     <div class="p-4 mt-4 bg-white rounded shadow-sm">
-                        <h5 class="mb-3">Our POS in Action</h5>
-                        <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="POS System" class="img-fluid rounded">
-                    </div>
+                
                     </div>
                 </div>
             </div>
@@ -1446,6 +1858,104 @@
     <!-- AOS (Animate On Scroll) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Comments functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Star rating functionality
+    const stars = document.querySelectorAll('.rating-stars i');
+    const ratingInput = document.getElementById('commentRating');
+    
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            ratingInput.value = rating;
+            
+            // Update star display
+            stars.forEach(s => {
+                if (s.getAttribute('data-rating') <= rating) {
+                    s.classList.remove('far');
+                    s.classList.add('fas', 'active');
+                } else {
+                    s.classList.remove('fas', 'active');
+                    s.classList.add('far');
+                }
+            });
+        });
+        
+        star.addEventListener('mouseover', function() {
+            const rating = this.getAttribute('data-rating');
+            
+            stars.forEach(s => {
+                if (s.getAttribute('data-rating') <= rating) {
+                    s.classList.remove('far');
+                    s.classList.add('fas');
+                } else {
+                    s.classList.remove('fas');
+                    s.classList.add('far');
+                }
+            });
+        });
+        
+        star.addEventListener('mouseout', function() {
+            const currentRating = ratingInput.value;
+            
+            stars.forEach(s => {
+                if (s.getAttribute('data-rating') <= currentRating) {
+                    s.classList.remove('far');
+                    s.classList.add('fas', 'active');
+                } else {
+                    s.classList.remove('fas', 'active');
+                    s.classList.add('far');
+                }
+            });
+        });
+    });
+    
+    // Form submission
+    document.getElementById('newCommentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // In a real application, you would send this data to a server
+        // For this example, we'll just show a success message
+        
+        const successMessage = document.createElement('div');
+        successMessage.className = 'comment-success';
+        successMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i> Thank you for your review! It will be visible after moderation.';
+        
+        this.parentNode.appendChild(successMessage);
+        successMessage.style.display = 'block';
+        
+        // Reset form
+        this.reset();
+        
+        // Reset stars
+        stars.forEach(s => {
+            s.classList.remove('fas', 'active');
+            s.classList.add('far');
+        });
+        ratingInput.value = '5';
+        
+        // Show default 5 stars after reset
+        stars.forEach(s => {
+            if (s.getAttribute('data-rating') <= 5) {
+                s.classList.remove('far');
+                s.classList.add('fas', 'active');
+            }
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000);
+    });
+});
+
+
+
+
+
+
+
+
         // Initialize AOS
         AOS.init({
             duration: 800,
