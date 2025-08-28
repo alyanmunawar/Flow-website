@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow POS - Restaurant Point of Sale System | Pakistan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #6C74A8;
+            --grey: #E5E5E5;
+            --teal: #A8DADC;
+            --dark-navy: #4a5079;
+        }
+
+        /* Logo styling */
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+    /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(108, 116, 168, 0.8), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            color: var(--navy);
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--teal);
+        }
+        
+        /* Year Box Animation */
+        .year-box {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            background: var(--navy);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transform: perspective(500px) rotateY(20deg);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+        
+        .year-box:hover {
+            transform: perspective(500px) rotateY(0deg) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .year-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--teal);
+            z-index: -1;
+            transform: translateZ(-20px);
+            border-radius: 8px;
+            opacity: 0.7;
+        }
+        
+        .year-box:after {
+            content: 'EST.';
+            position: absolute;
+            top: -25px;
+            left: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            background: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        
+        /* Client Logo Styles */
+        .client-logo-box {
+            height: 100px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-logo-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .client-logo {
+            max-height: 60px;
+            width: auto;
+            max-width: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        
+        .stats-section {
+            background: linear-gradient(rgba(108, 116, 168, 0.9), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 15px;
+            height: 100%;
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--teal);
+        }
+        
+        .contact-section {
+            background: linear-gradient(rgba(229, 229, 229, 0.9), rgba(229, 229, 229, 0.9)), url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .btn-primary {
+            background-color: var(--navy);
+            border-color: var(--navy);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-navy);
+            border-color: var(--dark-navy);
+        }
+        
+        .btn-outline-primary {
+            color: var(--navy);
+            border-color: var(--navy);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--navy);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1rem;
+        }
+        
+        .footer-logo {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h5 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-social .btn {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+        
+        hr {
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title:after {
+                width: 60px;
+                height: 3px;
+            }
+            
+            .partners-section {
+                padding: 80px 0;
+            }
+            
+            .partners-section .section-title {
+                font-size: 2rem;
+            }
+            
+            .partners-section p.lead {
+                font-size: 1.1rem;
+            }
+
+            .customer-experience-section {
+                padding: 80px 0;
+            }
+            
+            .customer-experience-section .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Rating bar animation */
+        .rating-container {
+            position: relative;
+            height: 5px;
+            background-color: #f0f0f0;
+            margin-top: 10px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .rating-bar {
+            height: 100%;
+            background-color: var(--teal);
+            width: 0;
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+        
+        .rating-value {
+            position: absolute;
+            right: 10px;
+            top: -25px;
+            font-weight: bold;
+            color: var(--navy);
+        }
+        
+        /* Animations */
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Restaurant Showcase Styles */
+        .restaurant-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .restaurant-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .restaurant-body {
+            padding: 20px;
+            background: white;
+        }
+        
+        .restaurant-type {
+            color: var(--teal);
+            font-weight: 600;
+        }
+        
+        /* POS Features */
+        .pos-feature-img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 400px;
+            width: auto;
+            max-width: 100%;
+            position: relative;
+        }
+        
+        /* Carousel customization */
+        .carousel-item {
+            height: 500px;
+        }
+        
+        .carousel-img {
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .carousel-caption {
+            bottom: 100px;
+        }
+        
+        /* Grid system for features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .carousel-item {
+                height: 400px;
+            }
+            
+            .section-title:after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .year-box {
+                font-size: 1.8rem;
+                padding: 10px 15px;
+                left: 10px;
+                bottom: 10px;
+            }
+            
+            .year-box:after {
+                font-size: 0.8rem;
+                top: -20px;
+            }
+        }
+        
+        /* Custom scroll animations */
+        [data-aos="custom-slide-up"] {
+            transform: translateY(50px);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        
+        [data-aos="custom-slide-up"].aos-animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        [data-aos="custom-fade-in"] {
+            opacity: 0;
+            transition-property: opacity;
+        }
+        
+        [data-aos="custom-fade-in"].aos-animate {
+            opacity: 1;
+        }
+        
+        /* Counter animation */
+        .counter {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        /* New rating animation styles */
+        .rating-animation-container {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .rating-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .rating-description {
+            font-size: 1.2rem;
+            color: var(--navy);
+        }
+
+        /* Updated POS Features Section */
+        .pos-features-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-navy) 100%);
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pos-feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.5s ease;
+            text-align: center;
+            height: 100%;
+        }
+
+        .pos-feature-icon {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        .pos-feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .pos-feature-card:hover .pos-feature-icon {
+            transform: scale(1.2);
+        }
+
+        .pos-feature-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .pos-feature-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--teal);
+            transition: all 0.5s ease;
+        }
+
+        .pos-feature-card:hover h3::after {
+            width: 100%;
+        }
+
+        .pos-feature-card p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Floating 3D elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(168,218,220,0.2);
+            filter: blur(30px);
+            z-index: 1;
+        }
+
+        .element-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .element-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Simplified Demo Modal */
+        .demo-modal .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .demo-modal .modal-header {
+            background-color: var(--navy);
+            color: white;
+            border-bottom: none;
+            padding: 20px 25px;
+        }
+
+        .demo-modal .modal-body {
+            padding: 30px;
+        }
+
+        .demo-modal .modal-footer {
+            border-top: none;
+            padding: 20px 25px;
+            background-color: #f8f9fa;
+            justify-content: center;
+        }
+
+        .demo-modal .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .demo-form .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .demo-form .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 0.25rem rgba(168, 218, 220, 0.25);
+        }
+
+        .submit-demo-btn {
+            background-color: var(--navy);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .submit-demo-btn:hover {
+            background-color: var(--dark-navy);
+            transform: translateY(-2px);
+        }
+        
+        /* Equal height cards */
+        .equal-height-cards {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .equal-height-cards > .col-md-4 {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-equal-height {
+            flex: 1;
+        }
+        
+        /* Software House Section */
+        .software-house-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Updated background for POS-related sections */
+        .pos-bg-section {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+   <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.jpg" alt="Flow POS Logo" class="logo-img">
+                <span style="color: var(--navy);">Flow</span> POS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link login-btn" href="demo.html">Get Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Demo Modal -->
+    <div class="modal fade demo-modal" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="demoModalLabel">Schedule a Demo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="demo-form">
+                        <div class="mb-3">
+                            <label for="demoName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="demoName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="demoEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="demoEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="demoPhone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="demoPhone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="demoBusiness" class="form-label">Business Name</label>
+                            <input type="text" class="form-control" id="demoBusiness">
+                        </div>
+                        <div class="mb-3">
+                            <label for="demoDate" class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" id="demoDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="demoTime" class="form-label">Preferred Time</label>
+                            <select class="form-select" id="demoTime">
+                                <option value="9-11">9:00 AM - 11:00 AM</option>
+                                <option value="11-1">11:00 AM - 1:00 PM</option>
+                                <option value="1-3">1:00 PM - 3:00 PM</option>
+                                <option value="3-5">3:00 PM - 5:00 PM</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-demo-btn">Submit Demo Request</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0 text-center">Have questions? Call us at <strong>+92 300 1234567</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Slider -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100 carousel-img" alt="Restaurant POS System">
+                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
+                    <h2>Pakistan's Premier Restaurant POS</h2>
+                    <p class="lead">Streamline your restaurant operations with Pakistan's most trusted POS system</p>
+                    <button class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">Request Demo</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100 carousel-img" alt="POS Features">
+                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
+                    <h2>Complete Restaurant Management</h2>
+                    <p class="lead">From order taking to inventory, we've got your restaurant covered</p>
+                    <button class="btn btn-outline-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">See Demo</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="d-block w-100 carousel-img" alt="POS Technology">
+                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
+                    <h2>Trusted by Pakistan's Top Restaurants</h2>
+                    <p class="lead">Join hundreds of successful restaurants using Flow POS</p>
+                    <button class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">View Demo</button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Software House Section -->
+    <section id="software-house" class="software-house-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title">Since 2015</h2>
+                    <p class="lead">Pioneering restaurant technology solutions for nearly a decade</p>
+                    <p>Flow POS has been at the forefront of restaurant technology innovation since our establishment in 2015. We've spent years understanding the unique needs of Pakistani restaurants and developing solutions that address local challenges.</p>
+                    <p>Our journey began with a simple mission: to create a POS system that works seamlessly in Pakistan's unique business environment, with features like load-shedding resilience, Urdu language support, and local payment integrations.</p>
+                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">Learn Our Story</button>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" style="position: relative;">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Software Development Team" class="img-fluid rounded shadow">
+                    <div class="year-box animate__animated animate__fadeInUp animate__delay-1s">
+                        2015
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="counter" data-target="500">0</div>
+                    <p>Restaurants in Pakistan</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="counter" data-target="24">0</div>
+                    <p>Pakistani Support Team</p>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="counter" data-target="98">0</div>
+                    <p>Customer Satisfaction</p>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="counter" data-target="8">0</div>
+                    <p>Cities Across Pakistan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logo Bar Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title d-inline-block">Trusted By</h2>
+                <p class="lead">Pakistan's top restaurants rely on Flow POS</p>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Cafe+Lahore" alt="Cafe Lahore" class="img-fluid client-logo">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Karachi+BBQ" alt="Karachi BBQ" class="img-fluid client-logo">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Islamabad+Cafe" alt="Islamabad Cafe" class="img-fluid client-logo">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Pindi+Grill" alt="Pindi Grill" class="img-fluid client-logo">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Quetta+Foods" alt="Quetta Foods" class="img-fluid client-logo">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
+                        <img src="https://via.placeholder.com/150x80?text=Multan+Kitchen" alt="Multan Kitchen" class="img-fluid client-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rating Animation Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="rating-animation-container" data-aos="fade-up">
+                <div class="rating-number" id="ratingCounter">0</div>
+                <div class="rating-description">Restaurants using our POS system across Pakistan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POS Features Section with 3D Animations -->
+    <section id="features" class="pos-features-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="text-white d-inline-block">Advanced POS Features</h2>
+                <p class="lead text-white-50">Powerful tools to transform your restaurant operations</p>
+            </div>
+            <div class="row equal-height-cards">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Real-time Analytics</h3>
+                        <p>Get instant insights into your restaurant's performance with our comprehensive dashboard and reporting tools.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>Inventory Control</h3>
+                        <p>Automated inventory tracking with low-stock alerts and wastage reports to optimize your food costs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Customer CRM</h3>
+                        <p>Build customer loyalty with detailed profiles, order history tracking, and targeted promotions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Ordering</h3>
+                        <p>Enable table-side ordering with our mobile app for waiters, reducing errors and improving service.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Kitchen Display</h3>
+                        <p>Streamline kitchen operations with digital order tickets and preparation timers.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="pos-feature-card card-equal-height">
+                        <div class="pos-feature-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>Bilingual Interface</h3>
+                        <p>Full Urdu/English support to make training easier for all staff members.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#demoModal">Request Full Demo</button>
+            </div>
+        </div>
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+    </section>
+
+    <!-- Restaurant Showcase -->
+    <section class="py-5 pos-bg-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title d-inline-block">POS Interface Showcase</h2>
+                <p class="lead">Explore our intuitive and powerful POS interface</p>
+            </div>
+            <div class="row equal-height-cards">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="restaurant-card card-equal-height">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="POS Dashboard">
+                        <div class="restaurant-body">
+                            <span class="restaurant-type">Dashboard</span>
+                            <h4>Real-time Analytics</h4>
+                            <p>Comprehensive dashboard showing sales, inventory, and customer data in real-time.</p>
+                            <div class="rating-container">
+                                <div class="rating-bar" data-width="95"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="restaurant-card card-equal-height">
+                        <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="Order Management">
+                        <div class="restaurant-body">
+                            <span class="restaurant-type">Order Management</span>
+                            <h4>Table Management</h4>
+                            <p>Intuitive interface for managing tables, orders, and payments efficiently.</p>
+                            <div class="rating-container">
+                                <div class="rating-bar" data-width="92"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="restaurant-card card-equal-height">
+                        <img src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="Reporting Interface">
+                        <div class="restaurant-body">
+                            <span class="restaurant-type">Reporting</span>
+                            <h4>Advanced Reporting</h4>
+                            <p>Detailed reports and analytics to help you make data-driven business decisions.</p>
+                            <div class="rating-container">
+                                <div class="rating-bar" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">See How It Works</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title d-inline-block">Complete POS Solutions</h2>
+                <p class="lead">Tailored for Pakistani restaurants of all sizes</p>
+            </div>
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="POS Hardware" class="img-fluid pos-feature-img">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3>Hardware Packages</h3>
+                    <p>We provide complete hardware solutions designed for Pakistan's restaurant environment:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><strong><i class="fas fa-check-circle text-primary me-2"></i> POS Terminals:</strong> Rugged systems built for busy restaurants</li>
+                        <li class="mb-3"><strong><i class="fas fa-check-circle text-primary me-2"></i> Kitchen Printers:</strong> Fast and reliable for high-volume kitchens</li>
+                        <li class="mb-3"><strong><i class="fas fa-check-circle text-primary me-2"></i> Cash Drawers:</strong> Secure and durable for Pakistani currency</li>
+                        <li class="mb-3"><strong><i class="fas fa-check-circle text-primary me-2"></i> Customer Displays:</strong> Clear order confirmation for customers</li>
+                        <li><strong><i class="fas fa-check-circle text-primary me-2"></i> Local Support:</strong> Installation and maintenance across Pakistan</li>
+                    </ul>
+                    <button class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">See Hardware Demo</button>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Software Services" class="img-fluid pos-feature-img">
+                </div>
+                <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+                    <h3>Software Services</h3>
+                    <p>Our comprehensive software services designed for Pakistani restaurants:</p>
+                    <div class="row equal-height-cards">
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-laptop-code text-primary me-2"></i> Custom Development</h5>
+                                    <p class="card-text">Tailored solutions for your restaurant's unique needs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-cloud-upload-alt text-primary me-2"></i> Cloud Integration</h5>
+                                    <p class="card-text">Secure cloud services for data backup and access</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-sync-alt text-primary me-2"></i> Regular Updates</h5>
+                                    <p class="card-text">Continuous improvement with latest features</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-database text-primary me-2"></i> Data Migration</h5>
+                                    <p class="card-text">Seamless transfer from your old system</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="500">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-user-graduate text-primary me-2"></i> Staff Training</h5>
+                                    <p class="card-text">Comprehensive training programs in Urdu/English</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3" data-aos="zoom-in" data-aos-delay="600">
+                            <div class="card h-100 border-0 shadow-sm card-equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-shield-alt text-primary me-2"></i> Security Services</h5>
+                                    <p class="card-text">Regular security audits and protection</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#demoModal">Request Software Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 pos-bg-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title d-inline-block">What Our Customers Say</h2>
+                <p class="lead">Restaurant owners across Pakistan love Flow POS</p>
+            </div>
+            <div class="row equal-height-cards">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card card-equal-height">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Client" class="testimonial-img me-3">
+                            <div>
+                                <h5 class="mb-0">Ali Khan</h5>
+                                <small class="text-muted">Owner, Cafe Lahore</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Flow POS transformed our operations. The Urdu interface made training staff effortless, and our order accuracy improved dramatically."</p>
+                        <div class="mt-2 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card card-equal-height">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                            <div>
+                                <h5 class="mb-0">Fatima Ahmed</h5>
+                                <small class="text-muted">Manager, Karachi BBQ House</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The inventory management alone saved us 15% on food costs. The local support team is always available when we need them."</p>
+                        <div class="mt-2 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card card-equal-height">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Client" class="testimonial-img me-3">
+                            <div>
+                                <h5 class="mb-0">Usman Malik</h5>
+                                <small class="text-muted">Owner, Islamabad Cafe</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Switching to Flow POS was the best decision for our cafe. The reporting features help us understand our busiest times and most popular items."</p>
+                        <div class="mt-2 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#demoModal">See What Our Customers Love</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 contact-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title d-inline-block">Get In Touch</h2>
+                <p class="lead">Ready to transform your restaurant? Contact us today!</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="contact-form">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="restaurant" class="form-label">Restaurant Name</label>
+                                <input type="text" class="form-control" id="restaurant">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#demoModal">Or Request a Demo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="p-4">
+                        <h3 class="mb-4">Contact Information</h3>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i>
+                            <div>
+                                <h5 class="mb-1">Our Office</h5>
+                                <p class="mb-0">123 Business Plaza, Main Boulevard, Lahore, Pakistan</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-phone-alt text-primary me-3 mt-1"></i>
+                            <div>
+                                <h5 class="mb-1">Call Us</h5>
+                                <p class="mb-0">+92 300 1234567 (Sales)<br>+92 300 7654321 (Support)</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="fas fa-envelope text-primary me-3 mt-1"></i>
+                            <div>
+                                <h5 class="mb-1">Email Us</h5>
+                                <p class="mb-0">sales@flowpos.pk<br>support@flowpos.pk</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-clock text-primary me-3 mt-1"></i>
+                            <div>
+                                <h5 class="mb-1">Working Hours</h5>
+                                <p class="mb-0">Monday - Saturday: 9:00 AM to 7:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 mt-4 bg-white rounded shadow-sm">
+                        <h5 class="mb-3">Our POS in Action</h5>
+                        <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="POS System" class="img-fluid rounded">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    <footer class="pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="logo.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <h4 class="m-0" style="color: white;">Flow POS</h4>
+                    </div>
+                    
+                    <div class="footer-social mt-4">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.1s;">
+                    <div class="footer-links">
+                        <h5>Product</h5>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Integrations</a>
+                        <a href="#">Updates</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.2s;">
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Press</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.3s;">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <a href="#">Help Center</a>
+                        <a href="#">Community</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">API Docs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.4s;">
+                    <div class="footer-links">
+                        <h5>Legal</h5>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Security</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© 2023 Flow POS. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Change navbar style on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Rating counter animation
+        function animateRatingCounter() {
+            const counter = document.getElementById('ratingCounter');
+            const target = 500;
+            const duration = 2000; // Animation duration in ms
+            const increment = target / (duration / 16); // 60fps
+            
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Scroll event listener for rating animation
+        window.addEventListener('scroll', () => {
+            const ratingElement = document.querySelector('.rating-animation-container');
+            if (isInViewport(ratingElement) && !ratingElement.classList.contains('animated')) {
+                ratingElement.classList.add('animated');
+                animateRatingCounter();
+            }
+        });
+
+        // Counter animation for stats
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+
+        // Animate rating bars on scroll
+        function animateRatingBars() {
+            const ratingBars = document.querySelectorAll('.rating-bar');
+            ratingBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+                
+                // Animate the rating value
+                const ratingValue = bar.parentElement.querySelector('.rating-value');
+                if (ratingValue) {
+                    let current = 0;
+                    const target = parseInt(width);
+                    const increment = target / 50;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        ratingValue.textContent = Math.round(current) + '%';
+                    }, 20);
+                }
+            });
+        }
+
+        // Animate elements when they come into view
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('[data-aos]');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if(elementPosition < screenPosition) {
+                    element.classList.add('aos-animate');
+                }
+            });
+        }
+
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            animateCounters();
+            animateRatingBars();
+        });
+
+        // Animate on scroll
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate grid items on hover
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const icon = item.querySelector('.feature-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1)';
+                    icon.style.color = '#A8DADC';
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                const icon = item.querySelector('.feature-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1)';
+                    icon.style.color = '#6C74A8';
+                }
+            });
+        });
+
+        // Scroll-triggered animations for hero section
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const heroSection = document.querySelector('.hero-section');
+            
+            if (heroSection) {
+                heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+            }
+        });
+
+        // Demo form submission
+        document.querySelector('.demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Thank you! Your demo request has been submitted. We will contact you shortly to schedule your demo.');
+            const demoModal = bootstrap.Modal.getInstance(document.getElementById('demoModal'));
+            demoModal.hide();
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
