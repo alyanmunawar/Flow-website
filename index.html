@@ -78,7 +78,112 @@
     color: var(--navy);
 }
 
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    /* Reviews section spacing */
+    .comments-section {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    
+    .comments-section .section-title {
+        margin-bottom: 20px !important;
+    }
+    
+    .comments-section .lead {
+        margin-bottom: 25px !important;
+    }
+    
+    /* Reduce padding in testimonials */
+    .testimonial-card {
+        padding: 20px 15px;
+    }
+    
+    /* Adjust comment form */
+    .add-comment-form {
+        padding: 20px 15px;
+    }
+    
+    /* Make carousel indicators more touch-friendly */
+    .carousel-indicators button {
+        width: 14px !important;
+        height: 14px !important;
+    }
+    
+    /* Improve button sizing for mobile */
+    .btn {
+        padding: 10px 16px;
+        font-size: 16px; /* Minimum for easy tapping */
+    }
+    
+    /* Adjust navbar for mobile */
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .navbar-brand img {
+        height: 35px;
+    }
+    
+    
+    /* Improve touch targets throughout */
+    .nav-link {
+        padding: 10px 15px;
+    }
+    
+    /* Growth section adjustments */
+    .growth-card {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+    
+    /* POS features adjustments */
+    .pos-feature-card {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+}
 
+/* Additional mobile adjustments for very small screens */
+@media (max-width: 576px) {
+    /* Further reduce padding/margins */
+    .container, .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    
+    .section-title:after {
+        bottom: -8px;
+    }
+    
+    /* Stack elements that are side-by-side on desktop */
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .col-6, .col-md-3, .col-lg-2 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Make sure text is readable without zoom */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    /* Adjust form elements for mobile */
+    .form-control, .form-select {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px 15px;
+    }
+}
 
      /* Growth Section Styles */
 .growth-card {
@@ -226,10 +331,20 @@
 
 
 
+
+
+
+
+
         /* Ensure all icons have consistent styling */
 .growth-icon i {
     font-size: 2rem;
 }
+
+
+
+
+
 
 
         :root {
@@ -290,7 +405,7 @@
         }
         
         .hero-section {
-            background: linear-gradient(rgba(108, 116, 168, 0.8), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(108, 116, 168, 0.8), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -382,14 +497,12 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .client-logo {
-            max-height: 60px;
-            width: auto;
-            max-width: 100%;
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
+        .client-logo[alt="Islamabad Cafe"] {
+    max-height: 80px;   /* Set your desired height */
+    width: auto;        /* Maintain aspect ratio */
+    max-width: 120px;   /* Optional: set a max width */
+}
+        
 
         .client-logo:hover {
             filter: grayscale(0%);
@@ -417,7 +530,7 @@
         }
         
         .stats-section {
-            background: linear-gradient(rgba(108, 116, 168, 0.9), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(rgba(108, 116, 168, 0.9), rgba(108, 116, 168, 0.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -449,7 +562,7 @@
         }
         
         .contact-section {
-            background: linear-gradient(rgba(229, 229, 229, 0.9), rgba(229, 229, 229, 0.9)), url('https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80');
+            background: linear-gradient(rgba(229, 229, 229, 0.9), rgba(229, 229, 229, 0.9)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
             background-size: cover;
             background-position: center;
         }
@@ -667,14 +780,11 @@
         }
         
         /* POS Features */
-        .pos-feature-img {
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            max-height: 400px;
-            width: auto;
-            max-width: 100%;
-            position: relative;
-        }
+     .pos-feature-img {
+    height: 300px;      /* Set your desired height */
+    width: 100%;        /* Makes image span full width of its container */
+    object-fit: cover;  /* Ensures the image fills the area without distortion */
+}
         
         /* Carousel customization */
         .carousel-item {
@@ -992,7 +1102,7 @@
         
         /* Updated background for POS-related sections */
         .pos-bg-section {
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -1020,7 +1130,7 @@
                     <a class="nav-link active" href="about.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pricing.html">Pricing</a>
+                    <a class="nav-link" href="services.html">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">Contact</a>
@@ -1032,8 +1142,6 @@
         </div>
     </div>
 </nav>
-
-
 
     <!-- Demo Modal -->
     <div class="modal fade demo-modal" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
@@ -1085,45 +1193,19 @@
     </div>
 
     <!-- Hero Slider -->
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHkNh9p7_qXbe7lf2As_jbXWKJWvD_ADcT5w&s" class="d-block w-100 carousel-img" alt="Restaurant POS System">
-                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
-                    <h2>Pakistan's Premier Restaurant POS</h2>
-                    <p class="lead">Streamline your restaurant operations with Pakistan's most trusted POS system</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.pexels.com/photos/12935048/pexels-photo-12935048.jpeg?cs=srgb&dl=pexels-imin-technology-276315592-12935048.jpg&fm=jpg " class="d-block w-100 carousel-img" alt="POS Features">
-                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
-                    <h2>Complete Restaurant Management</h2>
-                    <p class="lead">From order taking to inventory, we've got your restaurant covered</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="d-block w-100 carousel-img" alt="POS Technology">
-                <div class="carousel-caption d-none d-md-block animate_animated animate_fadeInUp">
-                    <h2>Trusted by Pakistan's Top Restaurants</h2>
-                    <p class="lead">Join hundreds of successful restaurants using Flow POS</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
+  <div class="hero-section" style="
+    background-image: url('h.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;">
+    
+</div>
+                
     <!-- Software House Section -->
     <section id="software-house" class="software-house-section">
         <div class="container">
@@ -1136,7 +1218,7 @@
         
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" style="position: relative;">
-                    <img src="https://www.touchbistro.com/wp-content/uploads/2022/04/all-in-one-restauraunt-management-system-inset-1.jpg" alt="Software Development Team" class="img-fluid rounded shadow">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Software Development Team" class="img-fluid rounded shadow">
                     <div class="year-box animate__animated animate__fadeInUp animate__delay-1s">
                         2015
                     </div>
@@ -1179,32 +1261,32 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Cafe+Lahore" alt="Cafe Lahore" class="img-fluid client-logo">
+                        <img src="Logo11.png" alt="Cafe Lahore" class="img-fluid client-logo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="200">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Karachi+BBQ" alt="Karachi BBQ" class="img-fluid client-logo">
+                        <img src="c:\Users\HP\Desktop\Restuarant Logo's\logo6.jpg" alt="Karachi BBQ" class="img-fluid client-logo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Islamabad+Cafe" alt="Islamabad Cafe" class="img-fluid client-logo">
+                        <img src="c:\Users\HP\Desktop\Restuarant Logo's\Logo12.jpg" alt="Islamabad Cafe" class="img-fluid client-logo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="400">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Pindi+Grill" alt="Pindi Grill" class="img-fluid client-logo">
+                        <img src="c:\Users\HP\Desktop\Restuarant Logo's\logo9.jpg" alt="Pindi Grill" class="img-fluid client-logo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="500">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Quetta+Foods" alt="Quetta Foods" class="img-fluid client-logo">
+                        <img src="c:\Users\HP\Desktop\Restuarant Logo's\pizza4.jpg" alt="Quetta Foods" class="img-fluid client-logo">
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 mb-4" data-aos="zoom-in" data-aos-delay="600">
                     <div class="client-logo-box p-3 d-flex align-items-center justify-content-center">
-                        <img src="https://via.placeholder.com/150x80?text=Multan+Kitchen" alt="Multan Kitchen" class="img-fluid client-logo">
+                        <img src="c:\Users\HP\Desktop\Restuarant Logo's\logo1.jpg" alt="Multan Kitchen" class="img-fluid client-logo">
                     </div>
                 </div>
             </div>
@@ -1234,8 +1316,8 @@
                         <div class="pos-feature-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>
-                        <h3>Real-time Analytics</h3>
-                        <p>Get instant insights into your restaurant's performance with our comprehensive dashboard and reporting tools.</p>
+                        <h3>User Friendly</h3>
+                        <p>Easy to learn and simple to operate. Designed for an intuitive and hassle-free experience.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
@@ -1243,7 +1325,7 @@
                         <div class="pos-feature-icon">
                             <i class="fas fa-box-open"></i>
                         </div>
-                        <h3>Inventory Control</h3>
+                        <h3>Inventory Managment</h3>
                         <p>Automated inventory tracking with low-stock alerts and wastage reports to optimize your food costs.</p>
                     </div>
                 </div>
@@ -1252,7 +1334,7 @@
                         <div class="pos-feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3>Customer CRM</h3>
+                        <h3>Costumer Managment (CRM)</h3>
                         <p>Build customer loyalty with detailed profiles, order history tracking, and targeted promotions.</p>
                     </div>
                 </div>
@@ -1270,8 +1352,8 @@
                         <div class="pos-feature-icon">
                             <i class="fas fa-utensils"></i>
                         </div>
-                        <h3>Kitchen Display</h3>
-                        <p>Streamline kitchen operations with digital order tickets and preparation timers.</p>
+                        <h3>Cloud Backup</h3>
+                        <p>Automatically back up your POS data to the cloud, ensuring it's always secure and accessible. Never lose a sale or customer detail again, with effortless, automated protection.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="600">
@@ -1279,8 +1361,8 @@
                         <div class="pos-feature-icon">
                             <i class="fas fa-language"></i>
                         </div>
-                        <h3>Bilingual Interface</h3>
-                        <p>Full Urdu/English support to make training easier for all staff members.</p>
+                        <h3>Reporting and Analytics</h3>
+                        <p>Transforms raw data into clear insights and visual summaries. Enables informed decision-making by tracking performance and trends.</p>
                     </div>
                 </div>
             </div>
@@ -1291,7 +1373,7 @@
         <div class="floating-element element-1"></div>
         <div class="floating-element element-2"></div>
     </section>
-<!-- Growth Section -->
+<!-- wth Section -->
 <section class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
@@ -1303,10 +1385,10 @@
             <!-- Image on left side -->
             <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
               <!-- Replace the img tag with this if using your original image -->
-<img src="https://qashier.com/th/wp-content/uploads/sites/8/2023/05/qashier-pos-plan-1024x683.jpeg" 
+<img src="c:\Users\HP\Desktop\unnamed (5).png" 
      alt="POS System Development" 
-     class="img-fluid rounded growth-section-img"
-     style="width: 100%; height: 550px; object-fit: cover;">
+     class="img-fluid rounded -section-img"
+      style=height:550px; object-fit: cover;>
             </div>
             
             <!-- Grid cards on right side -->
@@ -1319,7 +1401,8 @@
                                 <i class="fas fa-eye"></i>
                             </div>
                             <h3>Vision</h3>
-                            <p>Transforming global success through innovative call center and service solutions.</p>
+                            <p>To become the indispensable platform for businesses scaling their retail operations.
+.</p>
                         </div>
                     </div>
                     
@@ -1330,7 +1413,7 @@
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <h3>Mission</h3>
-                            <p>Driving client success through innovative, value-driven call center and service solutions.</p>
+                            <p>Fuel your business expansion with a POS that grows alongside your ambitions.</p>
                         </div>
                     </div>
                     
@@ -1341,7 +1424,7 @@
                                 <i class="fas fa-chess-knight"></i>
                             </div>
                             <h3>Strategy</h3>
-                            <p>Leveraging cutting-edge technology and processes to deliver exceptional customer experiences.</p>
+                            <p>Our strategy is to provide scalable tools that convert transactional data into a clear roadmap for expansion.</p>
                         </div>
                     </div>
                     
@@ -1352,7 +1435,7 @@
                                 <i class="fas fa-heart"></i>
                             </div>
                             <h3>Values</h3>
-                            <p>Commitment to excellence, integrity, innovation, and client success in everything we do.</p>
+                            <p>our ambition is our driver; your trust, our foundation. We grow together through innovation, integrity, and unwavering support.</p>
                         </div>
                     </div>
                 </div>
@@ -1371,7 +1454,7 @@
             <div class="row equal-height-cards">
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="restaurant-card card-equal-height">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="POS Dashboard">
+                        <img src="777.webp" class="restaurant-img" alt="POS Dashboard">
                         <div class="restaurant-body">
                             <span class="restaurant-type">Dashboard</span>
                             <h4>Real-time Analytics</h4>
@@ -1384,10 +1467,10 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="restaurant-card card-equal-height">
-                        <img src="https://images.unsplash.com/photo-1588200908342-23b585c03e26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="Order Management">
+                        <img src="22.jpg" class="restaurant-img" alt="Order Management">
                         <div class="restaurant-body">
                             <span class="restaurant-type">Order Management</span>
-                            <h4>Table Management</h4>
+                            <h4>Table Managemet</h4>
                             <p>Intuitive interface for managing tables, orders, and payments efficiently.</p>
                             <div class="rating-container">
                                 <div class="rating-bar" data-width="92"></div>
@@ -1397,7 +1480,7 @@
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="restaurant-card card-equal-height">
-                        <img src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="restaurant-img" alt="Reporting Interface">
+                        <img src="222.jpg" class="restaurant-img" alt="Reporting Interface">
                         <div class="restaurant-body">
                             <span class="restaurant-type">Reporting</span>
                             <h4>Advanced Reporting</h4>
@@ -1423,7 +1506,7 @@
             </div>
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <img src="data:image/jpeg;base64,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" alt="POS Hardware" class="img-fluid pos-feature-img">
+                    <img src="c:\Users\HP\Downloads\Gemini_Generated_Image_evp5wsevp5wsevp5.png" alt="POS Hardware" class="img-fluid pos-feature-img">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <h3>Hardware Packages</h3>
@@ -1439,7 +1522,12 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
-                    <img src="C:\Users\MUGHAL TRADERS\Downloads\2.webp" alt="Software Services" class="img-fluid pos-feature-img">
+                    <img src="unnamed (2).png" 
+     alt="Software Services" 
+     class="img-fluid pos-feature-img" 
+     width="450" 
+     height="550">
+
                 </div>
                 <div class="col-lg-6 order-lg-1" data-aos="fade-right">
                     <h3>Software Services</h3>
@@ -1501,15 +1589,15 @@
 
     <!-- Testimonials Section -->
    <!-- Interactive Comments Section -->
-<section class="py-5 pos-bg-section">
+<section class="py-5 pos-bg-section comments-section">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
+        <div class="text-center mb-4" data-aos="fade-up">
             <h2 class="section-title d-inline-block">What Our Customers Say</h2>
-            <p class="lead">Restaurant owners across Pakistan love Flow POS</p>
+            <p class="lead mb-4">Restaurant owners across Pakistan love Flow POS</p>
         </div>
         
         <!-- Comments Slider -->
-        <div class="comments-slider mb-5">
+        <div class="comments-slider mb-4">
             <div id="commentsCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -1518,7 +1606,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">Ali Khan</h5>
                                             <small class="text-muted">Owner, Cafe Lahore</small>
@@ -1538,7 +1626,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">Fatima Ahmed</h5>
                                             <small class="text-muted">Manager, Karachi BBQ House</small>
@@ -1558,7 +1646,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">Usman Malik</h5>
                                             <small class="text-muted">Owner, Islamabad Cafe</small>
@@ -1582,7 +1670,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">Sarah Johnson</h5>
                                             <small class="text-muted">Manager, Fusion Restaurant</small>
@@ -1602,7 +1690,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">David Chen</h5>
                                             <small class="text-muted">Owner, Dragon Palace</small>
@@ -1622,7 +1710,7 @@
                             <div class="col-md-4 mb-4">
                                 <div class="testimonial-card card-equal-height">
                                     <div class="d-flex align-items-center mb-3">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Client" class="testimonial-img me-3">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Client" class="testimonial-img me-3">
                                         <div>
                                             <h5 class="mb-0">Emily Williams</h5>
                                             <small class="text-muted">CEO, Foodie Chain</small>
