@@ -9,86 +9,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Growth Section Styles */
-.growth-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.5s ease;
-    text-align: center;
-    height: 100%;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    position: relative;
-}
-
-.growth-card:hover {
-    transform: translateY(-10px) rotateY(5deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.growth-card:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-    z-index: -1;
-    transform: translateZ(-20px);
-    border-radius: 15px;
-    opacity: 0.1;
-}
-
-.growth-icon {
-    font-size: 3rem;
-    color: var(--navy);
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 25px;
-    background: rgba(108, 116, 168, 0.1);
-    border-radius: 50%;
-    transition: all 0.5s ease;
-}
-
-.growth-card:hover .growth-icon {
-    transform: scale(1.2) rotateY(15deg);
-    color: var(--teal);
-}
-
-.growth-card h3 {
-    color: var(--navy);
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block;
-}
-
-.growth-card h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: var(--teal);
-    transition: all 0.5s ease;
-}
-
-.growth-card:hover h3::after {
-    width: 100%;
-}
-
-.growth-card p {
-    color: #666;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
         :root {
             --primary-color: #045476;
             --secondary-color: #5E9FAE;
@@ -125,7 +45,7 @@
         }
         
         .logo-img {
-            height: 70;
+            height: 70px;
             margin-right: 10px;
             border-radius: 50%;
         }
@@ -481,8 +401,9 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="logo.jpg" alt="Flow POS Logo" class="logo-img">
-                <span style="color: var(--primary-color);">Flow</span> POS
+                <img src="logo copy.jpg" alt="Flow POS Logo" class="logo-img">
+                <span style="color: var(--primary-color);">Flow</span>
+                <span style="color: #033a52;">POS</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -496,7 +417,7 @@
                         <a class="nav-link active" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pricing.html">Services</a>
+                        <a class="nav-link" href="services.html">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -763,7 +684,7 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
                     <div class="d-flex align-items-center mb-4">
-                        <img src="logo.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <img src="logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
                         <h4 class="m-0" style="color: white;">Flow POS</h4>
                     </div>
                     

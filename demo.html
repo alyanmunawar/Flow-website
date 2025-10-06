@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Demo - Flow POS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #045476;
+            --secondary-color: #5E9FAE;
+            --accent-color: #045476;
+            --dark-color: #34495e;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .demo-btn {
+            background: var(--primary-color);
+            color: white !important;
+            border-radius: 5px;
+            padding: 8px 20px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background: #03415e;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section - Updated with Background Theme */
+        .hero-section {
+            background: linear-gradient(135deg, #045476 0%, #5E9FAE 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBwYXR0ZXJuVHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
+            opacity: 0.3;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        /* Demo Form Section */
+        .demo-form-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Fixed Form Labels */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(4, 84, 118, 0.25);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #03415e;
+            transform: translateY(-3px);
+        }
+        
+        /* Updated Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stat-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .stat-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate {
+            opacity: 1;
+            transform: translate(0);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1rem;
+        }
+        
+        .footer-logo {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h5 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-social .btn {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+        
+        hr {
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title:after {
+                width: 60px;
+                height: 3px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            
+            .stat-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo copy.jpg" alt="Flow POS Logo" class="logo-img">
+                <span style="color: var(--primary-color);">Flow </span>
+                <span style="color: #033a52;">POS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link demo-btn" href="demo.html">Get Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Form - Updated with Background Theme -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center fade-in">
+                    <h1 class="hero-title">Let's Connect</h1>
+                    <p class="hero-subtitle">Get in touch with us to see how Flow POS's Full-Stack Restaurant Management System can revolutionize your business. We're ready to help you grow.</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 fade-in" style="transition-delay: 0.2s;">
+                    <div class="form-container">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Name*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email*</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="business">Business Name*</label>
+                                <input type="text" class="form-control" id="business" placeholder="Enter your business name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="type">Select type of Business*</label>
+                                <select class="form-control" id="type" required>
+                                    <option value="" disabled selected>Select your business type</option>
+                                    <option value="restaurant">Restaurant</option>
+                                    <option value="cafe">Cafe</option>
+                                    <option value="food companies">Food Companies</option>
+                                    <option value="bakery">Bakery</option>
+                                    <option value="snooker clubs">Snooker Club</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="city">City Name*</label>
+                                        <input type="text" class="form-control" id="city" placeholder="Enter your city" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="country">Select Country*</label>
+                                        <select class="form-control" id="country" required>
+                                            <option value="" disabled selected>Select your country</option>
+                                            <option value="us">United States</option>
+                                            <option value="uk">United Kingdom</option>
+                                            <option value="ca">Canada</option>
+                                            <option value="au">Australia</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="stores">Number of Stores*</label>
+                                <select class="form-control" id="stores" required>
+                                    <option value="" disabled selected>Select number of stores</option>
+                                    <option value="1">1</option>
+                                    <option value="2-5">2-5</option>
+                                    <option value="6-10">6-10</option>
+                                    <option value="11-20">11-20</option>
+                                    <option value="20+">20+</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Book Demo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Real Results. Real Customers.</h2>
+            <p class="text-center mb-5 fade-in" style="transition-delay: 0.1s;">Integrations that Grow Your Business</p>
+            
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4 fade-in" style="transition-delay: 0.2s;">
+                    <div class="stat-card">
+                        <div class="stat-title">Sales Growth</div>
+                        <div class="stat-number" data-target="2" data-suffix="X">0</div>
+                        <div class="stat-description">order growth within first 3 months</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in" style="transition-delay: 0.3s;">
+                    <div class="stat-card">
+                        <div class="stat-title">Faster Order Speed</div>
+                        <div class="stat-number" data-target="30" data-suffix=" sec">0</div>
+                        <div class="stat-description">seamless ordering experience</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in" style="transition-delay: 0.4s;">
+                    <div class="stat-card">
+                        <div class="stat-title">Increased User Retention</div>
+                        <div class="stat-number" data-target="51" data-suffix="%">0</div>
+                        <div class="stat-description">first-order convert into repeat orders</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in" style="transition-delay: 0.5s;">
+                    <div class="stat-card">
+                        <div class="stat-title">Greater Signup Conversions</div>
+                        <div class="stat-number" data-target="62" data-suffix="%">0</div>
+                        <div class="stat-description">new customers place an order</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <h4 class="m-0" style="color: white;">Flow POS</h4>
+                    </div>
+                    
+                    <div class="footer-social mt-4">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.1s;">
+                    <div class="footer-links">
+                        <h5>Product</h5>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Integrations</a>
+                        <a href="#">Updates</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.2s;">
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Press</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.3s;">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <a href="#">Help Center</a>
+                        <a href="#">Community</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">API Docs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.4s;">
+                    <div class="footer-links">
+                        <h5>Legal</h5>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Security</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© 2023 Flow POS. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Scroll animation function
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Number counting animation (ascending from 1, 2, 3...)
+            function animateNumbers() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                const duration = 2000; // animation duration in ms
+                const startTime = Date.now();
+                
+                statNumbers.forEach(statNumber => {
+                    const target = +statNumber.getAttribute('data-target');
+                    const suffix = statNumber.getAttribute('data-suffix') || '';
+                    const startValue = 0;
+                    
+                    const updateNumber = () => {
+                        const currentTime = Date.now();
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        const currentValue = Math.floor(progress * target);
+                        statNumber.textContent = currentValue + suffix;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            statNumber.textContent = target + suffix;
+                        }
+                    };
+                    
+                    updateNumber();
+                });
+            }
+            
+            // Start number animation when stats section is visible
+            const statsSection = document.querySelector('.stats-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumbers();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>

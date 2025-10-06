@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Flow POS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #045476;
+            --secondary-color: #5E9FAE;
+            --accent-color: #045476;
+            --dark-color: #34495e;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            transition: all 0.5s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .demo-btn {
+            background: var(--primary-color);
+            color: white !important;
+            border-radius: 5px;
+            padding: 8px 20px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background: #03415e;
+            transform: translateY(-2px);
+        }
+        
+        /* Join Us Hero Section */
+        .join-us-section {
+            background: linear-gradient(135deg, rgba(4, 84, 118, 0.85) 0%, rgba(94, 159, 174, 0.85) 100%), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') center/cover no-repeat;
+            padding: 100px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .join-us-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        /* Contact Form Section */
+        .contact-form-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .form-control {
+            height: 55px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 25px;
+            padding-left: 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        textarea.form-control {
+            height: auto;
+            min-height: 180px;
+            padding-top: 15px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(4, 84, 118, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(4, 84, 118, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background-color: #03415e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(4, 84, 118, 0.4);
+        }
+        
+        /* Contact Info Section */
+        .contact-info-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 35px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            height: 100%;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .info-details {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .info-details a {
+            color: #6c757d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .info-details a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate {
+            opacity: 1;
+            transform: translate(0);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding-top: 3rem;
+            padding-bottom: 1rem;
+        }
+        
+        .footer-logo {
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h5 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-social .btn {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+        
+        hr {
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title:after {
+                width: 60px;
+                height: 3px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .join-us-section {
+                padding: 80px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo copy.jpg" alt="Flow POS Logo" class="logo-img">
+                <span style="color: var(--primary-color);">Flow</span>
+                <span style="color: #033a52;">POS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link demo-btn" href="demo.html">Get Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Join Us Hero Section -->
+    <section class="join-us-section">
+        <div class="container text-center">
+            <h1 class="hero-title fade-in">Join us now</h1>
+            <p class="hero-subtitle fade-in">To redeeming global success through innovative restaurant management solutions.</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10 fade-in">
+                    <div class="form-container">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName">First name*</label>
+                                        <input type="text" class="form-control" id="firstName" required placeholder="Enter your first name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name*</label>
+                                        <input type="text" class="form-control" id="lastName" required placeholder="Enter your last name">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone*</label>
+                                        <input type="tel" class="form-control" id="phone" required placeholder="Enter your phone number">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email*</label>
+                                        <input type="email" class="form-control" id="email" required placeholder="Enter your email address">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject*</label>
+                                <input type="text" class="form-control" id="subject" required placeholder="What is this regarding?">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message*</label>
+                                <textarea class="form-control" id="message" required placeholder="Type your message here..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <h2 class="section-title fade-in">GET IN TOUCH</h2>
+            <p class="text-center mb-5 fade-in">We're right here for you.</p>
+            
+            <div class="row">
+                <div class="col-md-4 fade-in" style="transition-delay: 0.1s;">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="info-title">Headquarter</h3>
+                        <div class="info-details">
+                            <p>Bahria town,jinnah block commercial,Lahore,Pkistan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in" style="transition-delay: 0.2s;">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="info-title">Call Us</h3>
+                        <div class="info-details">
+                            <p><a href="tel:+16728224370">+1 (672) 822-4370</a></p>
+                            <p><a href="tel:+923298264260">+92 3298264260</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in" style="transition-delay: 0.3s;">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="info-title">Email Us</h3>
+                        <div class="info-details">
+                            <p><a href="mailto:flowtechnologies1@gmail.com">flowtechnologies1@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <h4 class="m-0" style="color: white;">Flow POS</h4>
+                    </div>
+                  
+                    
+                    <div class="footer-social mt-4">
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.1s;">
+                    <div class="footer-links">
+                        <h5>Product</h5>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Integrations</a>
+                        <a href="#">Updates</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0 fade-in" style="transition-delay: 0.2s;">
+                    <div class="footer-links">
+                        <h5>Company</h5>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Press</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.3s;">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <a href="#">Help Center</a>
+                        <a href="#">Community</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="#">API Docs</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6 fade-in" style="transition-delay: 0.4s;">
+                    <div class="footer-links">
+                        <h5>Legal</h5>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Security</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© 2023 Flow POS. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Scroll animation function
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Initial check
+            animateOnScroll();
+        
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
